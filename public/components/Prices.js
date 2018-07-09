@@ -42,7 +42,7 @@ class Prices extends React.Component{
       const sortedPrices = this.props.prices.prices.sort(function(obj1, obj2) {
         return obj1.startDate - obj2.startDate;
       });
-      if (this.state.checked) {
+      if (!this.state.checked) {
         const newPrices = sortedPrices.filter(price => price.isValidated === true )
         postContent = newPrices.map(
            price =>
