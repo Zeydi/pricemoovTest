@@ -24730,9 +24730,8 @@
 
 	var initialState = {};
 
-	var middleware = [_reduxThunk2.default];
-
-	var store = (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.compose)(_redux.applyMiddleware.apply(undefined, middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+	// Creating Store
+	var store = (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 	exports.default = store;
 
@@ -25543,6 +25542,7 @@
 	        var agency = this.props.agencies.find(function (agency) {
 	          return agency.name === _this2.state.value;
 	        });
+	        // Loading Categories
 	        this.props.loadCategories(agency);
 	      }
 	      var agencies = this.props.agencies;
@@ -25762,7 +25762,7 @@
 	        var sortedPrices = this.props.prices.prices.sort(function (obj1, obj2) {
 	          return obj1.startDate - obj2.startDate;
 	        });
-	        if (this.state.checked) {
+	        if (!this.state.checked) {
 	          var newPrices = sortedPrices.filter(function (price) {
 	            return price.isValidated === true;
 	          });
@@ -25781,7 +25781,6 @@
 	          });
 	        });
 	      }
-
 	      return _react2.default.createElement(
 	        'div',
 	        { style: pricesStyle },
